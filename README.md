@@ -40,14 +40,14 @@ cat /etc/hosts
 * docker-compose stop (stop)
 * docker-compose down --volumes (remove the data volume/imported data)
 
-### Start
+### Start All
 
 
 mkdir -p ~/angryquiz-volume-data/elasticsearchdata && mkdir -p ~/angryquiz-docker-data && curl -L https://raw.githubusercontent.com/angryquiz/docker-compose/master/docker-compose.yml > ~/angryquiz-docker-data/docker-compose.yml && cd ~/angryquiz-docker-data && docker-compose up -d
 
 
 
-### Status
+### Status All
 
 
 mkdir -p ~/angryquiz-docker-data && curl -L https://raw.githubusercontent.com/angryquiz/docker-compose/master/docker-compose.yml > ~/angryquiz-docker-data/docker-compose.yml && cd ~/angryquiz-docker-data && docker-compose ps
@@ -74,12 +74,20 @@ docker run --net=host --rm -ti -v ~/angryquiz-sample-data:/tmp taskrabbit/elasti
   --type=data
 ```
 
-### Stop 
+### Stop All
 
 * this will cleanup imported data. Will have to re-import
 
 mkdir -p ~/angryquiz-docker-data && curl -L https://raw.githubusercontent.com/angryquiz/docker-compose/master/docker-compose.yml > ~/angryquiz-docker-data/docker-compose.yml && cd ~/angryquiz-docker-data && docker-compose stop && docker ps --filter "status=exited" | awk '{print $1}' | xargs docker rm
 
+### Stop AngryQuiz only (redis and elasticsearch will not be stopped)
+
+docker ps | grep 'angryquiz77/angryquiz:latest' | awk '{print $1}' | xargs docker stop
+docker ps | grep 'angryquiz77/angryquiz:latest' | awk '{print $1}' | xargs docker rm
+
+### Start AngryQuiz only 
+
+docker run -d -p 8080:8080 angryquiz77/angryquiz:latest
 
 ### Test
 
