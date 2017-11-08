@@ -40,20 +40,18 @@ cat /etc/hosts
 * docker-compose stop (stop)
 * docker-compose down --volumes (remove the data volume/imported data)
 
-## One Line Command
-
 ### Start
 
-```
+
 mkdir -p ~/angryquiz-volume-data/elasticsearchdata && mkdir -p ~/angryquiz-docker-data && curl -L https://raw.githubusercontent.com/angryquiz/docker-compose/master/docker-compose.yml > ~/angryquiz-docker-data/docker-compose.yml && cd ~/angryquiz-docker-data && docker-compose up -d
-```
+
 
 
 ### Status
 
-```
+
 mkdir -p ~/angryquiz-docker-data && curl -L https://raw.githubusercontent.com/angryquiz/docker-compose/master/docker-compose.yml > ~/angryquiz-docker-data/docker-compose.yml && cd ~/angryquiz-docker-data && docker-compose ps
-```
+
 
 ### Import sample data
 
@@ -78,9 +76,9 @@ docker run --net=host --rm -ti -v ~/angryquiz-sample-data:/tmp taskrabbit/elasti
 
 ### Stop
 
-```
+
 mkdir -p ~/angryquiz-docker-data && curl -L https://raw.githubusercontent.com/angryquiz/docker-compose/master/docker-compose.yml > ~/angryquiz-docker-data/docker-compose.yml && cd ~/angryquiz-docker-data && docker-compose stop && docker ps --filter "status=exited" | awk '{print $1}' | xargs docker rm
-```
+
 
 ### Test
 
