@@ -31,6 +31,7 @@ cat /etc/hosts
 ### Run docker compose commands
 
 * git https://github.com/angryquiz/docker-compose.git
+* mkdir -p ~/angryquiz-volume-data/elasticsearchdata
 * cd docker-compose
 * Run the following commands:
 * docker-compose up (or below command)
