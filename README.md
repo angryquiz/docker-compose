@@ -44,16 +44,16 @@ cat /etc/hosts
 
 ### Start
 
-mkdir -p ~/angryquiz-volume-data/elasticsearchdata && curl -L https://raw.githubusercontent.com/angryquiz/docker-compose/master/docker-compose.yml > docker-compose.yml && docker-compose up -d
+```
+mkdir -p ~/angryquiz-volume-data/elasticsearchdata && mkdir -p ~/angryquiz-docker-data && curl -L https://raw.githubusercontent.com/angryquiz/docker-compose/master/docker-compose.yml > ~/angryquiz-docker-data/docker-compose.yml && cd ~/angryquiz-docker-data && docker-compose up -d
+```
 
 
 ### Status
 
-curl -L https://raw.githubusercontent.com/angryquiz/docker-compose/master/docker-compose.yml > docker-compose.yml && docker-compose ps
-
-### Stop
-
-curl -L https://raw.githubusercontent.com/angryquiz/docker-compose/master/docker-compose.yml > docker-compose.yml && docker-compose stop && docker ps --filter "status=exited" | awk '{print $1}' | xargs docker rm
+```
+mkdir -p ~/angryquiz-docker-data && curl -L https://raw.githubusercontent.com/angryquiz/docker-compose/master/docker-compose.yml > ~/angryquiz-docker-data/docker-compose.yml && cd ~/angryquiz-docker-data && docker-compose ps
+```
 
 ### Import sample data
 
@@ -76,6 +76,12 @@ docker run --net=host --rm -ti -v ~/angryquiz-sample-data:/tmp taskrabbit/elasti
   --type=data
 ```
 
+### Stop
+
+```
+mkdir -p ~/angryquiz-docker-data && curl -L https://raw.githubusercontent.com/angryquiz/docker-compose/master/docker-compose.yml > ~/angryquiz-docker-data/docker-compose.yml && cd ~/angryquiz-docker-data && docker-compose stop && docker ps --filter "status=exited" | awk '{print $1}' | xargs docker rm
+```
+
 ### Test
 
 * Kibana - http://angryquizhost:5601/app/kibana
@@ -86,4 +92,10 @@ docker run --net=host --rm -ti -v ~/angryquiz-sample-data:/tmp taskrabbit/elasti
 * AngryQuiz Dashboard - http://angryquizhost:8080/ 
 * AngryQuiz Search - http://angryquizhost:8080/dashboard/#!/questionBankSearch (search for 'a')
 
+### Cleanup (removes sample and temp data)
+
+```
+rm -rf ~/angryquiz-*
+
+```
 
