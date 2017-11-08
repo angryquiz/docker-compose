@@ -55,20 +55,23 @@ curl -L https://raw.githubusercontent.com/angryquiz/docker-compose/master/docker
 
 curl -L https://raw.githubusercontent.com/angryquiz/docker-compose/master/docker-compose.yml > docker-compose.yml && docker-compose stop && docker ps --filter "status=exited" | awk '{print $1}' | xargs docker rm
 
-## Sample data and testing
-
 ### Import sample data
 
-* Source - sample mapping - https://raw.githubusercontent.com/angryquiz/docs/master/question-bank-es-data.json
-* Source - sample data - https://raw.githubusercontent.com/angryquiz/docs/master/question-bank-es-mapping.json
 ```
-docker run --net=host --rm -ti -v /Users/aq/workspaces/angryquiz-stuff/docs:/tmp taskrabbit/elasticsearch-dump \
+
+mkdir -p ~/angryquiz-sample-data
+
+curl -L https://raw.githubusercontent.com/angryquiz/docs/master/question-bank-es-mapping.json > ~/angryquiz-sample-data/question-bank-es-mapping.json
+
+docker run --net=host --rm -ti -v ~/angryquiz-sample-data:/tmp taskrabbit/elasticsearch-dump \
   --input=/tmp/question-bank-es-mapping.json \
   --output=http://localhost:9200/questionbank \
   --type=mapping
 
-docker run --net=host --rm -ti -v /Users/aq/workspaces/angryquiz-stuff/docs:/tmp taskrabbit/elasticsearch-dump \
-  --input=/tmp/question-bank-es-data.json \
+curl -L https://raw.githubusercontent.com/angryquiz/docs/master/question-bank-es-data.json > ~/angryquiz-sample-data/question-bank-es-data.json
+
+docker run --net=host --rm -ti -v ~/angryquiz-sample-data:/tmp taskrabbit/elasticsearch-dump \
+  --input=/tmp/question-bank-es-data.json\
   --output=http://localhost:9200/questionbank \
   --type=data
 ```
