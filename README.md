@@ -40,6 +40,23 @@ cat /etc/hosts
 * docker-compose stop (stop)
 * docker-compose down --volumes (remove the data volume/imported data)
 
+## One Line Command
+
+### Start
+
+mkdir -p ~/angryquiz-volume-data/elasticsearchdata && curl -L https://raw.githubusercontent.com/angryquiz/docker-compose/master/docker-compose.yml > docker-compose.yml && docker-compose up -d
+
+
+### Status
+
+curl -L https://raw.githubusercontent.com/angryquiz/docker-compose/master/docker-compose.yml > docker-compose.yml && docker-compose ps
+
+### Stop
+
+curl -L https://raw.githubusercontent.com/angryquiz/docker-compose/master/docker-compose.yml > docker-compose.yml && docker-compose stop && docker ps --filter "status=exited" | awk '{print $1}' | xargs docker rm
+
+## Sample data and testing
+
 ### Import sample data
 
 * Source - sample mapping - https://raw.githubusercontent.com/angryquiz/docs/master/question-bank-es-data.json
