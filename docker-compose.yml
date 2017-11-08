@@ -1,0 +1,17 @@
+version: '3.2'
+services:
+  angryquiz77:
+    image: "angryquiz77/angryquiz:latest"
+    ports:
+     - "8080:8080"
+  redis:
+    image: "redis:latest"
+    ports:
+     - "6379:6379"
+  elasticsearch:
+    image: "nshou/elasticsearch-kibana:latest"
+    ports: ["9200:9200", "5601:5601"]
+    volumes:
+      - type: bind
+        source: /Users/aq/workspaces/angryquiz-stuff/elasticsearchdata
+        target: /home/elasticsearch/elasticsearch/data
