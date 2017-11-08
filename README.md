@@ -74,8 +74,9 @@ docker run --net=host --rm -ti -v ~/angryquiz-sample-data:/tmp taskrabbit/elasti
   --type=data
 ```
 
-### Stop
+### Stop 
 
+* this will cleanup imported data. Will have to re-import
 
 mkdir -p ~/angryquiz-docker-data && curl -L https://raw.githubusercontent.com/angryquiz/docker-compose/master/docker-compose.yml > ~/angryquiz-docker-data/docker-compose.yml && cd ~/angryquiz-docker-data && docker-compose stop && docker ps --filter "status=exited" | awk '{print $1}' | xargs docker rm
 
