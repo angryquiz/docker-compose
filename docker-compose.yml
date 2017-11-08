@@ -13,5 +13,5 @@ services:
     ports: ["9200:9200", "5601:5601"]
     volumes:
       - type: bind
-        source: /Users/aq/workspaces/angryquiz-stuff/elasticsearchdata
+        source: ~/angryquiz-volume-data/elasticsearchdata
         target: /home/elasticsearch/elasticsearch/data
